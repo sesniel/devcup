@@ -31,4 +31,30 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    
+    //Get session can be use on different type --> temporary users
+    public function current_user() {
+
+        $logged='';
+        if (!$this->Session->check('Session_User')) {
+            return $this->redirect('/');
+        } else {
+            $logged = $this->Session->read('Session_User');
+            return $logged;
+        }
+        
+    }
+    
+    public function admin_user() {
+
+        $logged='';
+        if (!$this->Session->check('Admin_User')) {
+            return $this->redirect('/');
+        } else {
+            $logged = $this->Session->read('Admin_User');
+            return $logged;
+        }
+        
+    }
+
 }
